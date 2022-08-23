@@ -1,67 +1,57 @@
-# DevOps-The-Hard-Way-AWS
+# Terraform-The-Hard-Way
 
-This tutorial contains a full, real-world solution for setting up an environment that is using DevOps technologies and practices for deploying apps and cloud services/cloud infrastructure to AWS.
+This tutorial contains a full explanation of how to use Terraform in today's world. Although there may be a lot of content out there for Terraform, it doesn't teach you how to think about Terraform with a developer hat on. I promise you that thinking about Terraform as a developer, even if you aren't one, will **100 percent** put you ahead of many engineers out there.
 
+You don't need to be a computer science major or a software engineer. You'll simply need to tweak your mindset a bit, very-much like we all do in the tech space as it changes.
+
+This project will be prepared for anyone to digest. Don't worry, you don't have to feel intimidated because you're new to Infrastructure-as-Code. We'll be with you every step of the way.
+
+With this project, you'll have the chance to not only help yourself as an engineer, but make a huge difference from an infrastructure and systems development perspective for all organizations.
+
+Learn about how to create real-world solutions for setting up an environment that is using DevOps technologies and practices for deploying apps and cloud services/cloud infrastructure to AWS.
 
 The repository contains free labs, documentation, diagrams, and docs for setting up an entire workflow and DevOps environment from a real-world perspective in AWS.
 
-## DevOps Scenario
-The scenario that you're currently facing is you work in an organization that is very monolithic. There is a ton of bare metal, virtualization, manual deployments of applications, and **old school** practices based on the current teams knowledge of IT.
+![](images/terraform.jpg)
 
-You're brought in to the company and team to make things more modern so the organization can not only succeed, but stay ahead of their competition. Management now understands the needs and complexity that comes with staying ahead of their competition and they know that they need to. Otherwise, the organization will fall...
+## The Scenario
 
-## DevOps Solution
-The solution is to deploy the Uber API for the sign-up page. Currently this solution is sitting on a bunch of baremetal, but it's time to sprinkle a little DevOps on it.
+For this *The Hard Way* series, there will be two scenarios;
+1. New to Terraform
+2. Already using Terraform, but aren't super advanced
 
-![](images/uber.png)
+This project will cover both scenarios.
 
-As a DevOps Engineer, you're more or less (most likely) not writing the app, but instead, deploying it. That's why you're not writing your own app in this tutorial.
+The first scenario is you're just getting started with Terraform, so you're still a bit green. It's the perfect time to learn.
 
-*Full Disclosure* - I did have to edit this app a bit from Uber to make it compatible with Python3. You can find the repo here:
+The second scenario is maybe you've used Terraform a little bit for your work, or maybe you've seen Terraform being used, but you don't know the ins and outs of it.
 
-https://github.com/AdminTurnedDevOps/Python-Sample-Application
-
-## Technology Details
-You will be using the following technologies and platforms to set up a DevOps environment.
+## Technologies Used
 
 1. AWS
-    - AWS will be used to host the application, cloud infrastructure, and any other services we may need to ensure the Uber app is deployed properly.
+    - AWS will be used to host the application, cloud infrastructure, and any other services we may need.
 2. GitHub
     - To store the application and infrastructure/automation code
-3. Python
-    - Python will be used for the Uber app (it is written in Python) and some automation efforts that aren't in Terraform.
-4. Terraform
-   - Create an S3 bucket to store Terraform State files
-   - Create an AWS ECR repository with Terraform
-   - Create an EKS cluster
-5. Docker
-   - Create a Docker image
-   - Store the Docker image in AWS ECR
-6. Kubernetes
-   - To run the Docker image that's created for the containerized Uber app. Kubernetes, in this case, EKS, will be used to orchestrate the container.
-7. CI/CD
-   - Use GitHub Actions to create an EKS cluster
-8. Automated testing
-    - Testing Terraform code with Checkov
+3. Terraform
+   - Create all aspects of the automated systems and services in the cloud
 
 ## Labs
-1. [Prerequisites](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/prerequisites.md)
-2. VPC - When running EKS, it requires specific networking. Because all environments will most likely be different, there's a CloudFormation template for this exact purpose.
-   - [Create EKS VPC](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/tree/main/EKS-VPC-CloudFormation)
-3. AWS:
-    - [Configure credentials to access AWS at a programmatic level](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/AWS/1-Configure-Credentials-To-Access-AWS.md)
-4. Terraform - The purpose of the Terraform section is to create all of the AWS cloud services you'll need from an environment/infrastructure perspective to run the Uber application.
-    - [Create S3 Bucket To Store TFSTATE Files](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/Terraform-AWS-Services-Creation/1-Create-S3-Bucket-To-Store-TFSTATE-Files.md)
-    - [Create an Elastic Container Registry](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/Terraform-AWS-Services-Creation/2-Create-ECR.md)
-    - [Create An EKS Cluster IAM Role, And Policy For EKS](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/Terraform-AWS-Services-Creation/3-Create-EKS-Cluster-IAM-Role-And-Policy.md)
-    - [Create An EKS Cluster](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/Terraform-AWS-Services-Creation/3-Create-EKS-Cluster-IAM-Role-And-Policy.md)
-5. Docker - The purpose of the Docker section is to create a Docker image from the app that the organization is running on-prem (the uber app), containerize it, and store the container inside of a container repository. For the container repo, you'll use AWS ECR.
-    - [Create The Docker Image](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/Docker/1-Create-Docker-Image.md)
-    - [Log Into AWS ECR Repository](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/Docker/Push%20Image%20To%20ECR.md)
-6. Kubernetes - The purpose of the Kubernetes section is to connect to EKS locally and to write the Kubernetes manifest to deploy the Python Uber app.
-    - [Connect To EKS From The Terminal](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/kubernetes_manifest/1-Connect-To-EKS.md)
-    - [Create A Kubernetes Manifest](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/kubernetes_manifest/2-Create-Kubernetes-Manifest.md)
-7. Automated Testing - The purpose of the Automation Testing section is to ensure that all of the Terraform code is performing as it should be from a policy, security, and static code analysis perspective.
-    - [Install And Run Checkov](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/Terraform-Static-Code-Analysis/1-Checkov-For-Terraform.md)
-8. CICD - The purpose of this section is to automatically create an EKS cluster with CICD using GitHub Actions
-    - [Create a GitHub Actions CICD pipeline](https://github.com/AdminTurnedDevOps/DevOps-The-Hard-Way-AWS/blob/main/Terraform-AWS-Services-Creation/4-Run-CICD-For-EKS-Cluster.md)
+1. The Basics - Getting started with Terraform and understanding the concepts. Although this may be a lot of theory, it's super crucial for anyone that wants to be a true master at Terraform in the Infrastructure-as-Code space.
+    - [Terraform Theory](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/blob/main/The-Basics/terraform-theory.md)
+    - [Terraform Logic Primer](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/blob/main/The-Basics/terraform-logic.md)
+    - [Terraform Types](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/blob/main/The-Basics/terraform-types.md)
+2. Terraform Logic - Although HCL's logic like `if` statements and `for` loops are much different from other languages, they still exist. This section is to explain all about TF logic.
+    - [Terraform Logic](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/blob/main/Terraform-Logic/logic.md)
+3. Environment - When you're getting started with Terraform, you'll need to ensure that you have a proper environment configured and ready for your success.
+    - [Build A Terraform Environment](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/blob/main/Environment/build_your_terraform_environment.md)
+4. Modules - When you're writing Terraform code and storing it in a directory, you're creating a Module. Learn all about how to construct proper modules.
+    - [Understanding Terraform Modules](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/tree/main/Modules)
+5. Providers - Learn about how providers are configured and how you can start creating your very own provider!
+    - [Understanding Terraform Providers](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/blob/main/Providers/providers.md)
+6. Terraform Cloud - one thing you'll learn about is Terraform State and how to manage it. Terraform Cloud can help with that amongst a ton of other features.
+    - [Learn Terraform Cloud](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/blob/main/Terraform-Cloud/tfcloud.md)
+7. First Project - Build your first Terraform project by using GitHub to store your source control and AWS to deploy services
+    - [Build A Network On AWS](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/tree/main/First-Project%20(network-buildout))
+8. Game Time: Build A Real World Scenario - You've done it! You completed the labs around what you need to know to be a Terraform expert. Now it's time to build a real-world scenario that you can use in your portfolio, resume, or to show off to your friends.
+    - [Build An API With Terraform](https://github.com/AdminTurnedDevOps/Terraform-The-Hard-Way/blob/main/Game-Time-Build-A-Real-World-Scenario/read.md)
+# Learn_Terraform
